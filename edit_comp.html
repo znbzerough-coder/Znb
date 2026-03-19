@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>modifier entreprise </title>
+</head>
+<body>
+ <h1>Modifier entreprise</h1>
+ <form action="" method="POST">
+    <label>ID</label>
+    <input type="text" name="id_entreprise" value="{{ entreprise.id_entreprise }}">
+    <label>Nom</label>
+    <input type="text" name="nom_entreprise" value="{{ entreprise.nom_entreprise }}">
+    <label>Adresse</label>
+    <input type="text" name="adresse" value="{{ entreprise.adresse}}">
+    <label>Email</label>
+    <input type="email" name="email" value="{{ entreprise.email }}">
+    <label>Secteur d'activite</label>
+    <input type="text" name="secteur_activite" value="{{ entreprise.secteur_activite }}">
+    <button type="submit">Modifier</button>
+ </form>
+</body>
+</html>

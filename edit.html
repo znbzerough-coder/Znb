@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>modifier</title>
+</head>
+
+<body>
+    <h1>Modifier étudiant</h1>
+
+    <form action="" method="POST">
+
+        <label>ID</label>
+        <input type="text" name="Matricule" value="{{ etudiant[0] }}">
+
+        <label>Nom</label>
+        <input type="text" name="nom" value="{{ etudiant[1] }}">
+
+        <label>Prenom</label>
+        <input type="text" name="prenom" value="{{ etudiant[2] }}">
+
+        <label>Date de naissance</label>
+        <input type="date" name="date_naissance" value="{{ etudiant[3] }}">
+
+        <label>Email</label>
+        <input type="email" name="email" value="{{ etudiant[4] }}">
+
+        <label>Telephone</label>
+        <input type="text" name="num_telephone" value="{{ etudiant[5] }}">
+
+        <label>Niveau</label>
+        <input type="text" name="niveau" value="{{ etudiant[6] }}">
+
+        <label>Specialite</label>
+        <input type="text" name="specialite" value="{{ etudiant[7] }}">
+
+
+        <button type="submit">Modifier</button>
+    </form>
+</body>
+
+</html>

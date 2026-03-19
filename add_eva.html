@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter L'évaluation</title>
+</head>
+<body>
+    <h1>Ajouter L'évaluation</h1>
+    <form action="" method="POST">
+
+        <!-- Stage dropdown: shows "Sujet — Nom Prenom" -->
+        <label for="id_stage">Sujet:</label>
+        <select id="id_stage" name="id_stage" required>
+            <option value="" disabled selected>-- Sélectionner un sujet --</option>
+            {% for sujet in sujets %}
+                <option value="{{ sujet[0] }}">
+                    {{ sujet[1] }} — {{ sujet[2] }} {{ sujet[3] }}
+                </option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <!-- Responsable dropdown: shows "Nom Prenom" -->
+        <label for="id_responsable">Nom du responsable:</label>
+        <select id="id_responsable" name="id_responsable" required>
+            <option value="" disabled selected>-- Sélectionner un responsable --</option>
+            {% for resp in responsables %}
+                <option value="{{ resp[0] }}">{{ resp[1] }} {{ resp[2] }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="note_rapport">Note du rapport:</label>
+        <input type="number" id="note_rapport" name="note_rapport" min="0" max="20">
+        <br><br>
+
+        <label for="note_soutenance">Note de la soutenance:</label>
+        <input type="number" id="note_soutenance" name="note_soutenance" min="0" max="20">
+        <br><br>
+
+        <label for="remarque">Remarque:</label>
+        <input type="text" id="remarque" name="remarque">
+        <br><br>
+
+        <label for="decision">Decision:</label>
+        <input type="text" id="decision" name="decision">
+        <br><br>
+
+        <button type="submit">Ajouter</button>
+    </form>
+</body>
+</html>

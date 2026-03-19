@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ajouter stage</title>
+</head>
+
+<body>
+    <h1>Ajouter stage</h1>
+    <form action="" method="POST">
+        <label>Date de debut</label>
+        <input type="text" name="date_debut">
+        <label>Date de fin</label>
+        <input type="text" name="date_fin">
+        <label>Type de stage</label>
+        <input type="text" name="type_stage">
+        <label>Sujet</label>
+        <input type="text" name="sujet">
+        <label>Matricule</label>
+        <select name="Matricule" required>
+            <option value="" disabled selected>-- Choisir un étudiant --</option>
+            {% for e in etudiant_ids %}
+            <option value="{{ e. Matricule }}">{{ e. Matricule }}</option>
+            {% endfor %}
+        </select>
+        <label>Entreprise</label>
+        <select name="nom_entreprise" required>
+            <option value="" disabled selected>-- Choisir une entreprise --</option>
+            {% for ent in entreprises %}
+            <option value="{{ ent.nom_entreprise }}">{{ ent.nom_entreprise }}</option>
+            {% endfor %}
+        </select>
+        <label>Rapport</label>
+        <input type="file" name="rapport">
+        <button type="submit">Ajouter</button>
+    </form>
+</body>
+
+</html>

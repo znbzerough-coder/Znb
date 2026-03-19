@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un suivi</title>
+</head>
+<body>
+    <h1>Modifier un suivi</h1>
+    <form method="POST">
+
+        <label for="type_suivi">Type de suivi:</label>
+        <input type="text" id="type_suivi" name="type_suivi" value="{{ suivi[1] }}" required>
+        <br><br>
+
+        <label for="taux_d_avancement">Taux d'avancement:</label>
+        <input type="text" id="taux_d_avancement" name="taux_d_avancement" value="{{ suivi[2] }}">
+        <br><br>
+
+        <label for="id_stage">Sujet du stage:</label>
+        <select id="id_stage" name="id_stage" required>
+            {% for stage in stages %}
+                <option value="{{ stage[0] }}"
+                    {% if stage[0] == suivi[3] %}selected{% endif %}>
+                    {{ stage[1] }} — {{ stage[2] }} {{ stage[3] }}
+                </option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="id_responsable">Responsable:</label>
+        <select id="id_responsable" name="id_responsable" required>
+            {% for resp in responsables %}
+                <option value="{{ resp[0] }}"
+                    {% if resp[0] == suivi[4] %}selected{% endif %}>
+                    {{ resp[1] }} {{ resp[2] }}
+                </option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <button type="submit">Mettre à jour</button>
+        <a href="/suivis">Annuler</a>
+    </form>
+</body>
+</html>

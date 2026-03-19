@@ -1,0 +1,258 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion Des Stages</title>
+
+    <style>
+        /* Titre et liens sur la même ligne, couleur chocolat */
+        .navbar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #D2691E !important;
+            /* chocolat */
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .navbar-brand:hover,
+        .nav-link:hover {
+            color: #A0522D !important;
+            /* chocolat plus foncé au survol */
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .navbar-nav .nav-link {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar-header">
+        <a class="navbar-brand" href="/">Gestion des stages</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="/">Accueil</a>
+            <a class="nav-link" href="/add_stage">Ajouter un stage</a>
+            <a class="nav-link" href="/login">Se connecter</a>
+            <a class="nav-link" href="/Etudiant">Etudiant</a>
+            <a class="nav-link" href="/encadrant">Encadrant</a>
+            <a class="nav-link" href="/add_comp">Entreprise</a>
+
+        </div>
+    </nav>
+    <div class="content-overlay">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <h1>Liste des étudiants</h1>
+
+    <a href="/add">Ajouter étudiant</a>
+
+    <table border="1">
+
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Date de naissance</th>
+            <th>Email</th>
+            <th>Telephone</th>
+            <th>Niveau</th>
+            <th>Specialite</th>
+        </tr>
+
+        {% for etudiant in etudiants %}
+        <tr>
+
+            <td>{{ etudiant[0] }}</td>
+            <td>{{ etudiant[1] }}</td>
+            <td>{{ etudiant[2] }}</td>
+            <td>{{ etudiant[3] }}</td>
+            <td>{{ etudiant[4] }}</td>
+            <td>{{ etudiant[5] }}</td>
+            <td>{{ etudiant[6] }}</td>
+            <td>{{ etudiant[7] }}</td>
+
+            <td>
+                <a href="/edit/{{ etudiant[0] }}">Modifier</a>
+                <a href="/delete/{{ etudiant[0] }}">Supprimer</a>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <h1>Liste des Entreprises</h1>
+
+    <a href="/add_comp">Ajouter une entreprise</a>
+
+    <table border="1">
+
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Email</th>
+            <th>Secteur d'activite</th>
+        </tr>
+
+        {% for entreprise in entreprises %}
+        <tr>
+            <td>{{ entreprise.id_entreprise }}</td>
+            <td>{{ entreprise.nom_entreprise }}</td>
+            <td>{{ entreprise.adresse }}</td>
+            <td>{{ entreprise.email }}</td>
+            <td>{{ entreprise.secteur_activite }}</td>
+
+            <td>
+                <a href="/edit_comp/{{ entreprise.id_entreprise }}">Modifier</a>
+                <a href="/delete_comp/{{ entreprise.id_entreprise }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <h1>Liste des Stages</h1>
+    <a href="/add_stage">Ajouter un stage</a>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Date de debut</th>
+            <th>Date de fin</th>
+            <th>Type de stage</th>
+            <th>Sujet</th>
+            <th>Matricule</th>
+            <th>Entreprise</th>
+            <th>Rapport</th>
+        </tr>
+        {% for stage in stages|default([]) %}
+        <tr>
+            <td>{{ stage.id_stage }}</td>
+            <td>{{ stage.date_debut }}</td>
+            <td>{{ stage.date_fin }}</td>
+            <td>{{ stage.type_stage }}</td>
+            <td>{{ stage.sujet }}</td>
+            <td>{{ stage. Matricule }}</td>
+            <td>{{ stage.nom_entreprise }}</td>
+            <td>{{ stage.rapport }}</td>
+            <td>
+                <a href="/edit_stage/{{ stage.id_stage }}">Modifier</a>
+                <a href="/delete_stage/{{ stage.id_stage }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h1>Liste des responsables</h1>
+    <a href="/add_responsable">Ajouter un responsable</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Telephone</th>
+        </tr>
+        {% for responsable in responsables|default([]) %}
+        <tr>
+            <td>{{ responsable.id_responsable }}</td>
+            <td>{{ responsable.nom }}</td>
+            <td>{{ responsable.prenom }}</td>
+            <td>{{ responsable.email }}</td>
+            <td>{{ responsable.telephone }}</td>
+            <td>
+                <a href="/edit_responsable/{{ responsable.id_responsable }}">Modifier</a>
+                <a href="/delete_responsable/{{ responsable.id_responsable }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h1>Liste des évaluations</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Sujet</th>
+                <th>Responsable</th>
+                <th>Note du rapport</th>
+                <th>Note de la soutenance</th>
+                <th>Remarque</th>
+                <th>Decision</th>
+            </tr>
+        </thead>
+        <tbody>
+       {% for evaluation in evaluations %}
+<tr>
+    <td>{{ evaluation.id_evaluation }}</td>
+    <td>{{ evaluation.sujet }}</td>
+    <td>{{ evaluation.responsable }}</td>
+    <td>{{ evaluation.note_rapport }}</td>
+    <td>{{ evaluation.note_soutenance }}</td>
+    <td>{{ evaluation.remarque }}</td>
+    <td>{{ evaluation.decision }}</td>
+    <td>
+        <a href="/edit_eva/{{ evaluation.id_evaluation }}">Modifier</a>
+        |
+        <a href="/delete_eva/{{ evaluation.id_evaluation }}">Supprimer</a>
+    </td>
+</tr>
+{% endfor %}
+    </table>
+    <br>
+    <a href="/add_eva">Ajouter une évaluation</a>
+
+<table border="1">
+    <h1>Liste des suivis</h1>
+<a href="/add_suivi">Ajouter un suivi</a>
+<br><br>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Type de suivi</th>
+            <th>Taux d'avancement</th>
+            <th>Sujet du stage</th>
+            <th>Responsable</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for suivi in suivis %}
+        <tr>
+            <td>{{ suivi.id_suivi }}</td>
+            <td>{{ suivi.type_suivi }}</td>
+            <td>{{ suivi.taux_d_avancement }}</td>
+            <td>{{ suivi.sujet }}</td>
+            <td>{{ suivi.responsable }}</td>
+            <td>
+                <a href="/edit_suivi/{{ suivi.id_suivi }}">Modifier</a>
+                |
+                <a href="/delete_suivi/{{ suivi.id_suivi }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+    </table>
+</body>
+</html>
+

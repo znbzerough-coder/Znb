@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier responsable</title>
+</head>
+<body>
+    <h1>Modifier responsable</h1>
+    <form action="" method="POST">
+        <label>ID</label>
+        <input type="text" name="id_responsable" value="{{ responsable.id_responsable }}" readonly>
+
+        <label>Nom</label>
+        <input type="text" name="nom" value="{{ responsable.nom }}">
+
+        <label>Prenom</label>
+        <input type="text" name="prenom" value="{{ responsable.prenom }}">
+
+        <label>Email</label>
+        <input type="email" name="email" value="{{ responsable.email }}">
+
+        <label>Telephone</label>
+        <input type="text" name="telephone" value="{{ responsable.telephone }}">
+    
+        <button type="submit">Modifier</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un stage</title>
+</head>
+<body>
+    <h1>Modifier un stage</h1>
+    <form method="POST">
+
+        <label for="date_debut">Date de début:</label>
+        <input type="date" id="date_debut" name="date_debut" value="{{ stage.date_debut }}" required>
+        <br><br>
+
+        <label for="date_fin">Date de fin:</label>
+        <input type="date" id="date_fin" name="date_fin" value="{{ stage.date_fin }}" required>
+        <br><br>
+
+        <label for="type_stage">Type de stage:</label>
+        <input type="text" id="type_stage" name="type_stage" value="{{ stage.type_stage }}">
+        <br><br>
+
+        <label for="sujet">Sujet:</label>
+        <input type="text" id="sujet" name="sujet" value="{{ stage.sujet }}">
+        <br><br>
+
+        <!-- Etudiant dropdown -->
+        <label for="Matricule">Etudiant:</label>
+        <select id="Matricule" name="Matricule" required>
+            {% for etudiant in etudiants %}
+                <option value="{{ etudiant.Matricule }}"
+                    {% if etudiant.Matricule == stage.Matricule %}selected{% endif %}>
+                    {{ etudiant.Matricule }} — {{ etudiant.nom }} {{ etudiant.prenom }}
+                </option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <!-- Entreprise dropdown -->
+        <label for="nom_entreprise">Entreprise:</label>
+        <select id="nom_entreprise" name="nom_entreprise" required>
+            {% for entreprise in entreprises %}
+                <option value="{{ entreprise.nom_entreprise }}"
+                    {% if entreprise.nom_entreprise == stage.nom_entreprise %}selected{% endif %}>
+                    {{ entreprise.nom_entreprise }}
+                </option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="rapport">Rapport:</label>
+        <input type="text" id="rapport" name="rapport" value="{{ stage.rapport }}">
+        <br><br>
+
+        <button type="submit">Mettre à jour</button>
+        <a href="/">Annuler</a>
+    </form>
+</body>
+</html>
